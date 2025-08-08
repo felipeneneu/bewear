@@ -1,0 +1,9 @@
+services:
+  bewear:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: bewearStore
+    ports:
+      - "5436:5432"
