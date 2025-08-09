@@ -5,7 +5,7 @@ export const productVariantTable = pgTable('product_variant', {
   id: uuid().primaryKey().defaultRandom(),
   productId: uuid()
     .notNull()
-    .references(() => productTable.id),
+    .references(() => productTable.id, { onDelete: 'cascade' }),
   name: text().notNull(),
   slug: text().notNull().unique(),
   color: text().notNull(),

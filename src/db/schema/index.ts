@@ -6,10 +6,12 @@ import {
   productRelations,
   productVariantRelations,
 } from './relations';
-import { userTable } from './userTable';
+import { accountTable, sessionTable, userTable } from './userTable';
 
 export const schema = {
   userTable,
+  accountTable,
+  sessionTable,
   productTable,
   productRelations,
   categoryRelations,

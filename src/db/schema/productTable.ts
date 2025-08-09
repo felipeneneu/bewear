@@ -5,7 +5,7 @@ export const productTable = pgTable('product', {
   id: uuid().primaryKey().defaultRandom(),
   categoryId: uuid()
     .notNull()
-    .references(() => categoryTable.id),
+    .references(() => categoryTable.id, { onDelete: 'set null' }),
   name: text().notNull(),
   slug: text().notNull().unique(),
   description: text().notNull(),
