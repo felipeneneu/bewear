@@ -1,6 +1,5 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { error } from 'console';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -70,11 +69,10 @@ const SignUpForm = () => {
           router.push('/');
           toast.success('Conta Criada com sucesso.');
         },
-        // biome-ignore lint/nursery/noShadow: <error>
         onError: (error) => {
           if (error.error.code === 'USER_ALREADY_EXISTS') {
             toast.error('E-mail já cadastrado.');
-            form.setError('email', {
+            return form.setError('email', {
               message: 'E-mail já cadastrado.',
             });
           }
