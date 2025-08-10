@@ -1,10 +1,44 @@
 import Image from 'next/image';
 import Header from '@/components/commom/header';
+import ProductList from '@/components/commom/product-list';
+import { db } from '@/db/connection';
 
-export default function Home() {
+const Home = async () => {
+  const products = await db.query.productTable.findMany({
+    with: {
+      variants: true,
+    },
+  });
+  // biome-ignore lint/suspicious/noConsole: <dev>
+  console.log(products);
   return (
     <>
       <Header />
+      <div className="space-y-6">
+        <div className="px-5">
+          <Image
+            alt="Leve uma vida com estilo"
+            className="h-auto w-full"
+            height={0}
+            sizes="100vw"
+            src="/banner-01.png"
+            width={0}
+          />
+        </div>
+
+        <ProductList products={products} title="Mais vendidos" />
+        <div className="px-5">
+          {' '}
+          <Image
+            alt="Leve uma vida com estilo"
+            className="h-auto w-full"
+            height={0}
+            sizes="100vw"
+            src="/banner-02.png"
+            width={0}
+          />
+        </div>
+      </div>
       <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
         <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
           <Image
@@ -104,4 +138,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;
