@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import CategorySelector from '@/components/commom/category-selector';
 import Header from '@/components/commom/header';
 import ProductList from '@/components/commom/product-list';
 import { db } from '@/db/connection';
@@ -9,6 +10,7 @@ const Home = async () => {
       variants: true,
     },
   });
+  const category = await db.query.categoryTable.findMany({});
   // biome-ignore lint/suspicious/noConsole: <dev>
   console.log(products);
   return (
@@ -37,6 +39,9 @@ const Home = async () => {
             src="/banner-02.png"
             width={0}
           />
+        </div>
+        <div className="px-5">
+          <CategorySelector categories={category} />
         </div>
       </div>
       <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
