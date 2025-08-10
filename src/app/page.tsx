@@ -3,6 +3,7 @@ import Image from 'next/image';
 import CategorySelector from '@/components/commom/category-selector';
 import Footer from '@/components/commom/footer';
 import Header from '@/components/commom/header';
+import Partners from '@/components/commom/partners';
 import ProductList from '@/components/commom/product-list';
 import { db } from '@/db/connection';
 import { productTable } from '@/db/schema/productTable';
@@ -37,6 +38,7 @@ const Home = async () => {
             width={0}
           />
         </div>
+        <Partners title="Nossos Parceiros" />
 
         <ProductList products={products} title="Mais vendidos" />
         <div className="px-5">
